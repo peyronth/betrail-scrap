@@ -26,4 +26,4 @@ def sportmaniacs(ranking_url):
     # In gender replace gender_0 by M and gender_1 by F
     df['gender'] = df['gender'].replace({'gender_0': 'M', 'gender_1': 'F'})
     # Excel export
-    excelExport.excel_export(df, "sportmaniacs")
+    return excelExport.excel_export(df, "sportmaniacs")

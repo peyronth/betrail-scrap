@@ -20,4 +20,4 @@ def kikourou(fileurl):
     df['Gender'] = df['Cat'].str[-1]
     # Remove Cat column
     df = df.drop(columns=['Cat'])
-    excelExport.excel_export(df, "kikourou")
+    return excelExport.excel_export(df, "kikourou")
