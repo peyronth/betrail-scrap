@@ -17,13 +17,13 @@ rem Build l'app avec PyInstaller
 pyinstaller main.spec --noconfirm
 
 rem Créer le dossier /dist/main/ dans un zip app.zip
-powershell Compress-Archive -Path .\dist\main\ -DestinationPath .\app.zip
+set /p commit_message="Entrez votre message de commit : "
+powershell Compress-Archive -Path .\dist\main\ -DestinationPath .\dist\betrail-scrap.zip
 
 rem Run test.py
 python test.py
 
 rem Git add, commit et push sur master
-set /p commit_message="Entrez votre message de commit : "
 git add .
 git commit -m "%commit_message%"
 git push origin master
