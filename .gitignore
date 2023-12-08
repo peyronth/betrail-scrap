@@ -1,3 +1,5 @@
 export/**.xlsx
 __pycache__
 versions/**.md
+dist/
+build/
