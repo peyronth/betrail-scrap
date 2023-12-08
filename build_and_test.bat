@@ -1,4 +1,4 @@
-@echo on
+@echo off
 
 rem Ask for commit message
 set /p commit_message="Entrez votre message de commit : "
@@ -33,3 +33,6 @@ git push origin master
 rem Create tag...
 git tag -a "%commit_message%" -m "%commit_message%"
 git push origin "%commit_message%"
+
+rem Checkout dev...
+git checkout dev
