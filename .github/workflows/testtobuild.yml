@@ -13,13 +13,13 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Set up Conda
-      uses: conda-incubator/setup-miniconda@v2
+      uses: conda-incubator/setup-miniconda@v3
       with:
-        activate-environment: myenv  # Remplacez "myenv" par le nom de votre environnement Conda
-        environment-file: environment.yml  # Si vous avez un fichier environment.yml spécifiant les dépendances
+        activate-environment: base
+        environment-file: environment.yml
 
     - name: Install dependencies
-      run: conda env update --file environment.yml && conda activate myenv
+      run: conda env update --file environment.yml
 
     - name: Run Test
       run: python test.py
