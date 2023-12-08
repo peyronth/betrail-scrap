@@ -1,33 +1,35 @@
 @echo on
 
-rem Fetch, checkout et pull la branche git dev
+rem Ask for commit message
+set /p commit_message="Entrez votre message de commit : "
+
+rem Getting dev...
 git fetch origin dev
 git checkout dev
 git pull origin dev
 
-rem Fetch, checkout et pull main
+rem Getting master...
 git fetch origin master
 git checkout master
 git pull origin master
 
-rem Merge dev dans main
+rem Merge dev into master...
 git merge dev
 
-rem Build l'app avec PyInstaller
+rem Build the app...
 pyinstaller main.spec --noconfirm
 
-rem Créer le dossier /dist/main/ dans un zip app.zip
-set /p commit_message="Entrez votre message de commit : "
+rem Compress the app...
 powershell Compress-Archive -Path .\dist\main\ -DestinationPath .\dist\betrail-scrap.zip
 
-rem Run test.py
+rem Run tests...
 python test.py
 
-rem Git add, commit et push sur master
+rem Update master...
 git add .
 git commit -m "%commit_message%"
 git push origin master
 
-rem Créer un tag avec le message de commit
+rem Create tag...
 git tag -a "%commit_message%" -m "%commit_message%"
 git push origin "%commit_message%"
