@@ -1,6 +1,7 @@
 import scripts.chronorace as chronorace
 import scripts.kikourou as kikourou
 import scripts.sportmaniacs as sportmaniacs
+import os
 
 # Table referencing for each website, webSiteName, scriptPath and exampleUrl.
 supportedWebsites = {
@@ -8,6 +9,14 @@ supportedWebsites = {
     'kikourou' : {"script": kikourou.kikourou, "exampleUrl": "http://www.kikourou.net/resultats/resultat-154252-la_course_nature_des_3_etangs_-_18_km-2020.html"},
     'sportmaniacs' : {"script": sportmaniacs.sportmaniacs, "exampleUrl": "https://sportmaniacs.com/es/races/gtpe-2023-gran-trail-picos-de-europa/64976d6e-e580-48b6-ba51-6641ac1f1c02/results#rankings"}
 }
+
+def create_export_folder():
+    export_folder = 'export'
+    os.makedirs(export_folder, exist_ok=True)
+
+if __name__ == "__main__":
+    create_export_folder()
+
 
 # Build ui for the script selection
 import tkinter as tk
