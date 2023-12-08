@@ -25,4 +25,4 @@ jobs:
         cd dist/main/
         zip -r app.zip .
     env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      SECRET_TOKEN: ${{ secrets.SECRET_TOKEN }}
