@@ -1,9 +1,8 @@
 name: Build App
 on:
-  workflow_run:
-    workflows: ["Run Test To Build"]
-    types:
-      - completed
+  push:
+    branches:
+      - master
 
 jobs:
   build-app:

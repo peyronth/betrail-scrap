@@ -2,7 +2,7 @@ name: Run Test To Build
 on:
   push:
     branches:
-      - master
+      - masterUnused
 
 jobs:
   run-test:
