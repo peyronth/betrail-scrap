@@ -2,7 +2,7 @@ name: Run Test To Build
 on:
   push:
     branches:
-      - master
+      - masterUnused
 
 jobs:
   run-test:
@@ -19,12 +19,7 @@ jobs:
         environment-file: environment.yml
 
     - name: Install dependencies
-      run: |
-        conda env update --file environment.yml
-        conda install pyinstaller
-        conda activate myenv
+      run: conda env update --file environment.yml && conda activate myenv
 
-    - name: Run PyInstaller
-      run: |
-        conda activate myenv
-        pyinstaller main.spec
+    - name: Run Test
+      run: python test.py

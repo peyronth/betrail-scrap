@@ -12,5 +12,14 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
+    - name: Set up Conda
+      uses: conda-incubator/setup-miniconda@v4
+      with:
+        activate-environment: base
+        environment-file: environment.yml
+
+    - name: Install PyInstaller
+      run: conda install -c conda-forge pyinstaller
+
     - name: Build App
       run: pyinstaller main.spec
