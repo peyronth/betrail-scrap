@@ -1,0 +1,28 @@
+name: Publish Version
+on:
+  workflow_run:
+    workflows: ["Build App"]
+    types:
+      - completed
+
+jobs:
+  publish-version:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Publish Version
+      run: |
+        # Copiez le fichier compatibility.md généré à l'étape 1
+        cp versions/compatibility.md $GITHUB_WORKSPACE
+
+        # Créez une nouvelle version dans GitHub
+        gh release create -t "Release $(date '+%Y-%m-%d %H:%M:%S')" -F compatibility.md
+
+        # Créez un fichier zip de l'application dans dist/main/
+        cd dist/main/
+        zip -r app.zip .
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
