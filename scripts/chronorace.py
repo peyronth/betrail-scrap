@@ -31,4 +31,4 @@ def chronorace(file_url):
     # Remove column 0, 3, 4, 6, 11, 12
     df = df.drop(columns=[0, 3, 4, 6, 11, 12])
     # Export to excel, file name is the timestamp
-    excelExport.excel_export(df, "chronorace")
+    return excelExport.excel_export(df, "chronorace")

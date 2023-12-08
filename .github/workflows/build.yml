@@ -1,0 +1,17 @@
+name: Build App
+on:
+  workflow_run:
+    workflows: ["Run Test To Build"]
+    types:
+      - completed
+
+jobs:
+  build-app:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Build App
+      run: pyinstaller main.spec
