@@ -28,13 +28,14 @@ def ultratiming(url):
 
 
 def get_all_pages_results(url, dataframe):
+    pageurlttr = '?page='
     if dataframe.shape[0] % 100 == 0:
         # Get the html page
         html = requests.get(url)
-        if url.split('?page=').__len__() == 1:
+        if url.split(pageurlttr).__len__() == 1:
             page = 1
         else:
-            page = int(url.split('?page=')[1])
+            page = int(url.split(pageurlttr)[1])
         # Parse the html page with BeautifulSoup
         soup = BeautifulSoup(html.content, 'html.parser')
         # Get the data included in the script with id "__NEXT_DATA__"
@@ -45,7 +46,7 @@ def get_all_pages_results(url, dataframe):
         df = pd.DataFrame(scriptcontentobj['props']['pageProps']['resultsResult']['hydra:member'])
         # append df to dataframe
         dataframe = dataframe.append(df, ignore_index=True)
-        return get_all_pages_results(url.split('?page=')[0] + '?page=' + str(page + 1), dataframe)
+        return get_all_pages_results(url.split(pageurlttr)[0] + pageurlttr + str(page + 1), dataframe)
     return dataframe
     
 
