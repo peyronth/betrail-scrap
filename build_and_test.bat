@@ -1,4 +1,4 @@
-@echo on
+@echo off
 
 rem Ask for commit message
 set /p commit_message="Entrez votre message de commit : "
@@ -20,7 +20,7 @@ rem Build the app...
 pyinstaller main.spec --noconfirm
 
 rem Compress the app...
-powershell Compress-Archive -Path .\dist\main\ -DestinationPath .\dist\betrail-scrap.zip
+powershell Compress-Archive -Path .\dist\main\ -DestinationPath .\dist\race-scrap.zip
 
 rem Run tests...
 python test.py
@@ -33,3 +33,6 @@ git push origin master
 rem Create tag...
 git tag -a "%commit_message%" -m "%commit_message%"
 git push origin "%commit_message%"
+
+rem Checkout dev...
+git checkout dev
