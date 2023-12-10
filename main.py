@@ -25,7 +25,7 @@ from tkinter import messagebox
 
 # Create the window
 tkWindow = tk.Tk()
-tkWindow.title('Betrail Scraper')
+tkWindow.title('Race Scraper')
 tkWindow.geometry('1000x120')
 
 # Set text alignment to center

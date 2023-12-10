@@ -1,22 +1,22 @@
-# Betrail Scraper
+# Race Scraper
 
-Betrail Scraper is a tool for scraping race results from various websites and exporting them to Excel files.
+Race Scraper is a tool for scraping race results from various websites and exporting them to Excel files.
 
 ## Supported Websites
 
-[See the list of supported websites.](https://github.com/peyronth/betrail-scrap/releases)
+[See the list of supported websites.](https://github.com/peyronth/race-scrap/releases)
 
 ## Usage
 
 1. **Download the Latest Version:**
-   - Visit the [Releases](https://github.com/peyronth/betrail-scrap/releases) page.
-   - Download the latest version of Betrail Scraper (betrail-scrap.zip).
+   - Visit the [Releases](https://github.com/peyronth/race-scrap/releases) page.
+   - Download the latest version of Race Scraper (race-scrap.zip).
 
 2. **Installation:**
    - Unzip the downloaded file to a folder of your choice.
 
-3. **Run Betrail Scraper:**
-   - Execute `betrail-scrap.exe`.
+3. **Run Race Scraper:**
+   - Execute `race-scrap.exe`.
    - Select your race and enter the URL.
    - Validate your selection.
    - Retrieve your Excel file from the `export` folder in the application.
