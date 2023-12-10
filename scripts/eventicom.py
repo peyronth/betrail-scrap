@@ -37,13 +37,19 @@ def eventicom(url):
     # convert time from %Hh%M'%S to %H:%M:%S
     df['time'] = df['time'].str.replace('h', ':').str.replace("'", ':')
 
-    # Split dataset to sub dataset by race then sort by time ASC and export to excel
+    # Remove rows with no time or time Nan
+    df = df[df['time'] != '']
+    df = df[df['time'].notna()]
+
     # Split dataset to sub dataset by race
     sub_datasets = df.groupby('race')
 
     # Sort each sub dataset by time in ascending order
     sorted_sub_datasets = {race: sub_dataset.sort_values('time') for race, sub_dataset in sub_datasets}
 
+    filesnames = []
     # Export each sorted sub dataset to Excel
     for race, sorted_sub_dataset in sorted_sub_datasets.items():
-        excelExport.excel_export(sorted_sub_dataset, "--" + race + "--eventicom")
+        filesnames.append(excelExport.excel_export(sorted_sub_dataset, "--" + race + "--eventicom"))
+
+    return '--'.join(filesnames)
