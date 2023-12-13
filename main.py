@@ -25,12 +25,16 @@ tkWindow.option_add('*justify', 'center')
 # Show the example url as a label
 exampleUrlLabel = ttk.Label(tkWindow, text="Example url : ")
 exampleUrlLabel.grid(column=0, row=2)
-exampleUrl = ttk.Label(tkWindow, width=160)
+exampleUrl = ttk.Entry(tkWindow, width=150)
 exampleUrl.grid(column=1, row=2)
+exampleUrl.configure(state='readonly')
 
 # Update the example url when the dropdown is changed
 def update_example_url(*args):
-    exampleUrl.config(text=supportedWebsites[selectedWebsite.get()]["exampleUrl"])
+    exampleUrl.configure(state='normal')
+    exampleUrl.delete(0, tk.END)
+    exampleUrl.insert(0, supportedWebsites[selectedWebsite.get()]['exampleUrl'])
+    exampleUrl.configure(state='readonly')
 
 # Create a select dropdown
 selectedWebsite = tk.StringVar()
@@ -41,7 +45,7 @@ websiteDropdown = ttk.OptionMenu(tkWindow, selectedWebsite, "Select a website", 
 websiteDropdown.grid(column=1, row=0)
 
 # Create a text entry box
-urlEntry = ttk.Entry(tkWindow, width=80)
+urlEntry = ttk.Entry(tkWindow, width=150)
 urlEntry.grid(column=1, row=4)
 urlEntryLabel = ttk.Label(tkWindow, text="Enter the url")
 urlEntryLabel.grid(column=0, row=4)
