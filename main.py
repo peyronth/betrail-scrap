@@ -59,10 +59,10 @@ def clicked():
         messagebox.showerror('Error', 'Please enter an url')
     else:
         # Launch the script
-        returned_path = supportedWebsites[selectedWebsite.get()]["script"](urlEntry.get())
+        returned_paths = supportedWebsites[selectedWebsite.get()]["script"](urlEntry.get())
         # Check if the file is created
-        if isinstance(returned_path, str):
-            messagebox.showinfo('Success', 'File created at ' + returned_path)
+        if isinstance(returned_paths, list):
+            messagebox.showinfo('Success', 'File created at ' + ', '.join(returned_paths))
         else:
             messagebox.showerror('Error', 'An error occured')
 

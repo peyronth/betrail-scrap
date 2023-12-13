@@ -23,7 +23,7 @@ def ultratiming(url):
     # Change userBirthDate format from 1990-01-01T00:00:00+01:00 to 1990
     df['userBirthDate'] = df['userBirthDate'].str.split('-').str[0]
 
-    return excelExport.excel_export(df, "ultratiming")
+    return [excelExport.excel_export(df, "ultratiming")]
 
 
 

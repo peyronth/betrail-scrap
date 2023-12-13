@@ -52,4 +52,4 @@ def eventicom(url):
     for race, sorted_sub_dataset in sorted_sub_datasets.items():
         filesnames.append(excelExport.excel_export(sorted_sub_dataset, "--" + race + "--eventicom"))
 
-    return '--'.join(filesnames)
+    return filesnames
