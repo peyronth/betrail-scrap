@@ -24,9 +24,9 @@ def eventicom(url):
     # Join each runner with his result (runner.d = result.d)
     df = df_runner.merge(df_results, on='d')
 
-    # just keep columns n, a, x, ca, c, p, na, re
-    df = df[['n', 'a', 'x', 'ca', 'c', 'p', 'na', 're']]
-    df = df.rename(columns={'n': 'name', 'a': 'year', 'x': 'gender', 'ca': 'category', 'c': 'club', 'p': 'race', 'na': 'country', 're': 'time'})
+    # just keep columns n, a, x, ca, c, p, na, t
+    df = df[['n', 'a', 'x', 'ca', 'c', 'p', 'na', 't']]
+    df = df.rename(columns={'n': 'name', 'a': 'year', 'x': 'gender', 'ca': 'category', 'c': 'club', 'p': 'race', 'na': 'country', 't': 'time'})
 
     # Replace column 7 (3 digit country code) by 2 digit country code
     country_file_path = './ressources/country.csv'
@@ -39,7 +39,9 @@ def eventicom(url):
 
     # Remove rows with no time or time Nan
     df = df[df['time'] != '']
+    df = df[df['time'] != 'Abandon']
     df = df[df['time'].notna()]
+
 
     # Split dataset to sub dataset by race
     sub_datasets = df.groupby('race')
@@ -52,4 +54,4 @@ def eventicom(url):
     for race, sorted_sub_dataset in sorted_sub_datasets.items():
         filesnames.append(excelExport.excel_export(sorted_sub_dataset, "--" + race + "--eventicom"))
 
-    return '--'.join(filesnames)
+    return filesnames

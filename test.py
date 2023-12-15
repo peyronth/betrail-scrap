@@ -9,12 +9,17 @@ for webSiteName in supportedWebsites:
     currentWebsite = webSiteName
     currentUrl = supportedWebsites[currentWebsite]["exampleUrl"]
     # Launch the script
-    returnedPath = supportedWebsites[currentWebsite]["script"](currentUrl)
+    returnedPaths = supportedWebsites[currentWebsite]["script"](currentUrl)
     # Check if the file is created
     testResult = False
-    if isinstance(returnedPath, str) and os.path.isfile(returnedPath):
-        testResult = True
-    testResults[webSiteName] = testResult
+    for path in returnedPaths:
+        if os.path.isfile(path):
+            testResult = True
+        else:
+            testResult = False
+            break
+    testResults[currentWebsite] = testResult
+
 
 # Save results as markdown table in versions/compatibility.md and rename actual compatibility.md
 import datetime
