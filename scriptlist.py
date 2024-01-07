@@ -7,6 +7,8 @@ import scripts.utmb as utmb
 import scripts.yakachrono as yakachrono
 import scripts.livetrail as livetrail
 
+import tools.htmlParser.raceresult as HTMLraceresult
+
 supportedWebsites = {
     'chronorace' : {"script": chronorace.chronorace, "exampleUrl": "https://prod.chronorace.be/Classements/Classement.aspx?eventId=1188318666566175&IdClassement=17573"},
     'eventicom' : {"script": eventicom.eventicom, "exampleUrl": "https://eventicom.fr/resultats/TrailNoel2023/10%C3%A8me%20Trail%20de%20No%C3%ABl.clax" },
@@ -16,4 +18,8 @@ supportedWebsites = {
     'ultratiming' : {"script": ultratiming.ultratiming, "exampleUrl": "https://www.ultratiming.be/evenement/trail-du-hoyoux-2023/epreuve/34km/resultats"},
     'utmb world' : {"script": utmb.utmbworld, "exampleUrl": "https://kosciuszko.utmb.world/runners/results?year=2023&raceUri=33948.ultra-trailkosciuszkobyutmbkoscimiler.2023"},
     'yakachrono (pdf)' : {"script": yakachrono.yakachrono_pdf, "exampleUrl": "https://www.ganatrail.com/_files/ugd/a39524_982ab77c9b054edc83fe4b4085e22de6.pdf"}
+}
+
+supportedHtmlFormats = {
+    'raceresult' : {"script": HTMLraceresult.raceresult, "exampleFormat": "<table class=\"MainTable\">...</table>"}
 }
