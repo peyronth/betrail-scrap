@@ -1,5 +1,6 @@
 import tkinter as tk
 import views.scrapfromurl as scrapfromurl
+import views.scrapfromhtml as scrapfromhtml
 from tkinter import ttk
 import webbrowser
 
@@ -21,8 +22,8 @@ def scrap_url():
     scrapfromurl.scrapfromurl(root)
 
 def scrap_html():
-    # Add your code to scrap result from HTML here
-    pass
+    global root
+    scrapfromhtml.scrapfromhtml(root)
 
 def backyard_result():
     # Add your code for backyard result here
