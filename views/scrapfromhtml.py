@@ -57,7 +57,7 @@ def scrapfromhtml(root):
             messagebox.showerror('Error', 'An error occured')
         
 
-    button = ttk.Button(main_frame, text="Launch", command=clicked)
+    button = ttk.Button(main_frame, text="Choose HTML File", command=clicked)
     button.grid(column=1, row=7)
 
     # Display tkinter window
