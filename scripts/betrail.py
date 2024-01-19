@@ -12,10 +12,9 @@ def betrail_backyard(url, year, str_to_contain):
     event = [event for event in all_events if (datetime.datetime.fromtimestamp(event["date"]).strftime('%Y').startswith(str(year)))][0]
 
     all_distances = event["races"]
-    print(all_distances[0])
     if str_to_contain != "":
         all_distances = [distance for distance in all_distances if str_to_contain in distance["title"]]
-    all_race_df = pd.DataFrame(all_distances, columns=["id", "distance", "elevation"])
+    all_race_df = pd.DataFrame(all_distances, columns=["id", "distance", "elevation", "betrail_index"])
 
     all_race_results = []
     #Get each race results
@@ -36,16 +35,12 @@ def betrail_backyard_getperformance(url, year, lap_length, string_to_contain="")
     performances = []
     for idx, distance in all_distances_df.iterrows():
         lap_count=round(distance['distance']/lap_length,0)
-        finisher_count=0
-        worst_performance=1000
         mean_performance=0
-        for idx2, performance in distance['results'].iterrows():
-            finisher_count+=1
-            if performance['performance']<worst_performance:
-                worst_performance=performance['performance']
-            mean_performance=mean_performance+performance['performance']
-        mean_performance=mean_performance/finisher_count
-        performances.append([lap_count, finisher_count, worst_performance, mean_performance])
-    columns = ["lap_count", "runner_count", "worst_prono", "average_prono"]
+        performances_list = distance['results']['performance']
+        finisher_count = len(performances_list)
+        mean_performance = sum(performances_list)/finisher_count
+        median_performance = sorted(performances_list)[finisher_count//2]
+        performances.append([lap_count, finisher_count, median_performance, mean_performance, distance['betrail_index']])
+    columns = ["lap_count", "runner_count", "worst_prono", "average_prono", "old_index"]
     performances_df = pd.DataFrame(performances, columns=columns)
     return performances_df
