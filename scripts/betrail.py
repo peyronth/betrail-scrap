@@ -40,7 +40,7 @@ def betrail_backyard_getperformance(url, year, lap_length, string_to_contain="")
         finisher_count = len(performances_list)
         mean_performance = sum(performances_list)/finisher_count
         median_performance = sorted(performances_list)[finisher_count//2]
-        performances.append([lap_count, finisher_count, median_performance, mean_performance, distance['betrail_index']])
-    columns = ["lap_count", "runner_count", "worst_prono", "average_prono", "old_index"]
+        performances.append([lap_count, distance["distance"], finisher_count, median_performance, mean_performance, distance['betrail_index']])
+    columns = ["lap_count", "distance", "runner_count", "worst_prono", "average_prono", "old_index"]
     performances_df = pd.DataFrame(performances, columns=columns)
     return performances_df

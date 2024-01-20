@@ -1,6 +1,7 @@
 import tkinter as tk
 import views.scrapfromurl as scrapfromurl
 import views.scrapfromhtml as scrapfromhtml
+import views.backyardinterpolation as backyardinterpolation
 from tkinter import ttk
 import webbrowser
 
@@ -25,9 +26,9 @@ def scrap_html():
     global root
     scrapfromhtml.scrapfromhtml(root)
 
-def backyard_result():
-    # Add your code for backyard result here
-    pass
+def backyard_smooth():
+    global root
+    backyardinterpolation.backyardinterpolation(root)
 
 def see_compatibilities():
     # Open link 
@@ -57,7 +58,7 @@ def show_home_view(main_frame):
     button1.pack(pady=10)
     button2 = ttk.Button(content_frame, text="Scrap Result from HTML", command=scrap_html)
     button2.pack(pady=10)
-    button3 = ttk.Button(content_frame, text="Backyard Result", command=backyard_result)
+    button3 = ttk.Button(content_frame, text="Smooth Backyard Results", command=backyard_smooth)
     button3.pack(pady=10)
     button4 = ttk.Button(content_frame, text="See Compatibilities", command=see_compatibilities)
     button4.pack(pady=10)
@@ -70,7 +71,7 @@ scrap_submenu.add_command(label="Scrap Result from URL", command=scrap_url)
 scrap_submenu.add_command(label="Scrap Result from HTML", command=scrap_html)
 backyard_submenu = tk.Menu(menu)
 menu.add_cascade(label="Backyard", menu=backyard_submenu)
-backyard_submenu.add_command(label="Backyard Result", command=backyard_result)
+backyard_submenu.add_command(label="Backyard Smooth indexes", command=backyard_smooth)
 menu.add_command(label="See Compatibilities", command=see_compatibilities)
 
 
