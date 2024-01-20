@@ -2,6 +2,7 @@ import pandas as pd
 import libs.excelExport as excelExport
 from bs4 import BeautifulSoup
 import tkinter as tk
+import libs.classes.SimpleChoiceBox as SimpleChoiceBox
 
 def raceresult(html): 
     #Parse html
@@ -24,9 +25,7 @@ def raceresult(html):
     # Ask for the name of the time column
     root = tk.Tk()
     root.withdraw()
-    time_column_name = ""
-    while time_column_name == "" or time_column_name not in df.columns:
-        time_column_name = tk.simpledialog.askstring("Time column name", "What is the name of the time column?")
+    time_column_name = (SimpleChoiceBox.SimpleChoiceBox("Time column name", "What is the name of the time column?", df.columns.values)).selection
     name_column_name = ""
     while name_column_name == "" or name_column_name not in df.columns:
         name_column_name = tk.simpledialog.askstring("Name column name", "What is the name of the name column? (If not fullname column to split enter \"Null\")")
