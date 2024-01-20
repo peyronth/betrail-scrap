@@ -24,7 +24,7 @@ def exportbylapcount (df, lapcount_column):
         filesnames.append(excelExport.excel_export(sub_dataset, "--backyard--" + str(lapcount) + "laps--"))
         lapcountarray.append(lapcount)
 
-    tkinter.messagebox.showinfo("Info", "Lap count array: " + ",".join(str(x) for x in lapcountarray))
+    print("Info", "Lap count array: " + ",".join(str(x) for x in lapcountarray))
 
     return filesnames
     
