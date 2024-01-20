@@ -1,5 +1,6 @@
 import os
 from scriptlist import supportedWebsites as supportedWebsites
+from scriptlist import supportedHtmlFormats as supportedHtmlFormats
 
 testResults = {}
 
@@ -25,21 +26,31 @@ for webSiteName in supportedWebsites:
 import datetime
 import shutil
 import pandas as pd
+from datetime import date
 
-# Create a dataframe with the test results
+# Create a dataframe with the test results for url scrap
 filename = "versions/compatibility.md"
-df = pd.DataFrame(testResults.items(), columns=['Website', 'Compatibility'])
-# Convert boolean to string and replace true by U+2705 and false by U+274C
-df['Compatibility'] = df['Compatibility'].replace({True: ':white_check_mark:', False: ':x:'})
-# Sort by website name
-df = df.sort_values(by=['Website'])
-# Convert to markdown table
-table = df.to_markdown(index=False)
-# Rename actual compatibility.md
+df_url_scrap = pd.DataFrame(testResults.items(), columns=['Website', 'Compatibility'])
+df_url_scrap['Compatibility'] = df_url_scrap['Compatibility'].replace({True: ':white_check_mark:', False: ':x:'})
+df_url_scrap = df_url_scrap.sort_values(by=['Website'])
+
+# Create a markdown table for html scrap
+df_html_scrap = pd.DataFrame(supportedHtmlFormats.items(), columns=['Website', 'Compatibility'])
+df_html_scrap['Compatibility'] = ':white_check_mark:'
+
+markdown = "# Compatibility\n\n" + \
+    "> Last update: " + date.today().strftime("%d/%m/%Y") + "\n\n" + \
+    "## Url scrap\n\n" + \
+    df_url_scrap.to_markdown(index=False) + \
+    "\n\n" + \
+    "## Html scrap\n\n" + \
+    df_html_scrap.to_markdown(index=False)
+
+
 if os.path.isfile(filename):
     shutil.move(filename, "versions/compatibility_" + datetime.datetime.now().strftime("%Y%m%d%H%M%S") + ".md")
 # Save the table in versions/compatibility.md
 with open(filename, "w") as file:
-    file.write(table)
+    file.write(markdown)
    
 

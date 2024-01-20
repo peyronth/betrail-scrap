@@ -4,3 +4,4 @@ versions/**_**.md
 dist/
 build/
 manual.py
+import/**.html

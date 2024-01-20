@@ -34,6 +34,3 @@ def yakachrono_pdf(url):
 
     return [excelExport.excel_export(table, "yakachrono")]
 
-    
-
-yakachrono_pdf("https://www.ganatrail.com/_files/ugd/a39524_982ab77c9b054edc83fe4b4085e22de6.pdf")
