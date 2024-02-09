@@ -24,8 +24,6 @@ def exportbylapcount (df, lapcount_column):
         filesnames.append(excelExport.excel_export(sub_dataset, "--backyard--" + str(lapcount) + "laps--"))
         lapcountarray.append(lapcount)
 
-    print("Info", "Lap count array: " + ",".join(str(x) for x in lapcountarray))
-
     return filesnames
     
 
@@ -33,4 +31,8 @@ def excelsplitdistance(filepath, distancecolumn = "Distance"):
     # Create pandas dataframe from excel file
     df = pd.read_excel(filepath)
     return exportbybistance(df, distancecolumn)
+
+def excelsplitlapcount(filepath, lapcount_column = "Lap count"):
+    df = pd.read_excel(filepath)
+    return exportbylapcount(df, lapcount_column)
 
